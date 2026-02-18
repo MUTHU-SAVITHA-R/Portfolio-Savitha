@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Savitha · frontend developer | black & pink portfolio</title>
+    <!-- SEO friendly -->
+    <meta
+      name="description"
+      content="Premium portfolio of Savitha – frontend developer with black & pink aesthetic, MERN journey and modern UI."
+    />
+    <meta name="author" content="Savitha" />
+    <!-- Google Fonts (Inter / Poppins – clean professional) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome 6 (free icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* ---------- DESIGN SYSTEM : BLACK + PINK ---------- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0a0a0a;
+        color: #f0f0f0;
+        line-height: 1.6;
+        scroll-behavior: smooth;
+      }
+
+      :root {
+        --black: #0f0f0f;
+        --black-light: #1a1a1a;
+        --black-card: #1e1e1e;
+        --pink: #ff4d8d;
+        --pink-soft: #ff80aa;
+        --pink-glow: rgba(255, 77, 141, 0.4);
+        --white: #ffffff;
+        --gray-light: #dddddd;
+        --glass-bg: rgba(20, 20, 20, 0.7);
+        --shadow-black: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+        --shadow-pink: 0 8px 25px rgba(255, 77, 141, 0.25);
+        --radius-card: 1.25rem;
+        --radius-btn: 3rem;
+        --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --text-primary: #f0f0f0;
+        --text-secondary: #cccccc;
+        --text-muted: #999999;
+        --border-color: #333333;
+        --input-bg: #151515;
+        --card-border: rgba(255, 255, 255, 0.03);
+      }
+
+      /* ===== DARK/LIGHT TOGGLE STYLES ===== */
+      .theme-toggle {
+        background: transparent;
+        border: 2px solid var(--pink);
+        border-radius: 2rem;
+        width: 60px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5px;
+        cursor: pointer;
+        position: relative;
+        margin-left: auto;
+        margin-right: 1rem;
+      }
+
+      .theme-toggle i {
+        font-size: 1rem;
+        z-index: 2;
+        transition: 0.3s;
+      }
+
+      .theme-toggle .fa-sun {
+        color: #ffaa00;
+      }
+
+      .theme-toggle .fa-moon {
+        color: #aaccff;
+      }
+
+      .theme-toggle::before {
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--pink);
+        left: 3px;
+        transition: transform 0.3s ease;
+        z-index: 1;
+      }
+
+      body.light-theme .theme-toggle::before {
+        transform: translateX(30px);
+      }
+
+      /* ===== LIGHT THEME - OPTIMIZED COLORS ===== */
+      body.light-theme {
+        --black: #ffffff;
+        --black-light: #f8f9fa;
+        --black-card: #ffffff;
+        --pink: #ff4d8d;
+        --pink-soft: #ff6fa5;
+        --pink-glow: rgba(255, 77, 141, 0.15);
+        --white: #1a1a1a;
+        --gray-light: #6c757d;
+        --glass-bg: rgba(255, 255, 255, 0.9);
+        --shadow-black: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        --shadow-pink: 0 8px 25px rgba(255, 77, 141, 0.15);
+        --text-primary: #2d3436;
+        --text-secondary: #4a5568;
+        --text-muted: #718096;
+        --border-color: #e2e8f0;
+        --input-bg: #ffffff;
+        --card-border: #f0f0f0;
+        background-color: #f8f9fa;
+      }
+
+      /* Light mode text colors */
+      body.light-theme,
+      body.light-theme p,
+      body.light-theme span,
+      body.light-theme div {
+        color: var(--text-primary);
+      }
+
+      /* Navbar */
+      body.light-theme .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      body.light-theme .nav-menu a {
+        color: #4a5568;
+      }
+
+      body.light-theme .nav-menu a:hover,
+      body.light-theme .nav-menu a.active {
+        color: var(--pink);
+      }
+
+      /* Hero section */
+      body.light-theme .hero {
+        background: radial-gradient(circle at 30% 30%, #fff0f5, #f8f9fa 70%);
+      }
+
+      body.light-theme .hero .tagline {
+        color: #4a5568;
+      }
+
+      body.light-theme .hero h1 {
+        background: linear-gradient(to right, #2d3436, #ff4d8d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Cards */
+      body.light-theme .about-card,
+      body.light-theme .skill-card,
+      body.light-theme .project-card,
+      body.light-theme .contact-info,
+      body.light-theme .contact-form {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      body.light-theme .about-card p {
+        color: #4a5568;
+      }
+
+      body.light-theme .skill-card h3 {
+        color: var(--pink);
+        border-left-color: var(--pink);
+      }
+
+      body.light-theme .skill-items span {
+        background: #f8f9fa;
+        border: 1px solid #e2e8f0;
+        color: #2d3436;
+      }
+
+      body.light-theme .skill-items i {
+        color: var(--pink);
+      }
+
+      /* Projects */
+      body.light-theme .projects {
+        background: #f1f3f5;
+      }
+
+      body.light-theme .project-card h3 {
+        color: var(--pink);
+      }
+
+      body.light-theme .project-desc {
+        color: #4a5568;
+      }
+
+      body.light-theme .project-desc strong {
+        color: #2d3436;
+      }
+
+      /* Contact section */
+      body.light-theme .contact {
+        background: #ffffff;
+      }
+
+      body.light-theme .info-item {
+        color: #4a5568;
+      }
+
+      body.light-theme .info-item a {
+        color: #4a5568 !important;
+      }
+
+      body.light-theme .info-item a:hover {
+        color: var(--pink) !important;
+      }
+
+      body.light-theme .info-item span {
+        color: #4a5568 !important;
+      }
+
+      body.light-theme .info-item i {
+        background: rgba(255, 77, 141, 0.1);
+        color: var(--pink);
+        border-color: var(--pink);
+      }
+
+      /* Form elements */
+      body.light-theme input,
+      body.light-theme textarea {
+        background: #ffffff;
+        border: 1.5px solid #e2e8f0;
+        color: #2d3436;
+      }
+
+      body.light-theme input::placeholder,
+      body.light-theme textarea::placeholder {
+        color: #a0aec0;
+      }
+
+      body.light-theme input:focus,
+      body.light-theme textarea:focus {
+        border-color: var(--pink);
+        background: #ffffff;
+      }
+
+      body.light-theme .error-msg {
+        color: #e53e3e;
+      }
+
+      /* Section titles */
+      body.light-theme .section-title {
+        color: #2d3436;
+      }
+
+      body.light-theme .section-title::after {
+        background: var(--pink);
+        box-shadow: 0 0 12px rgba(255, 77, 141, 0.3);
+      }
+
+      /* Footer */
+      body.light-theme .footer {
+        background: #ffffff;
+        border-top: 2px solid var(--pink);
+        color: #718096;
+      }
+
+      body.light-theme .footer a {
+        color: var(--pink);
+      }
+
+      body.light-theme .footer a:hover {
+        color: #ff80aa;
+      }
+
+      /* Chatbot */
+      body.light-theme .chatbot-container {
+        background: #ffffff;
+        border-color: #e2e8f0;
+      }
+
+      body.light-theme .chat-header {
+        background: #f8f9fa;
+        border-bottom-color: #e2e8f0;
+      }
+
+      body.light-theme .chat-header h3 {
+        color: #2d3436;
+      }
+
+      body.light-theme .chat-messages {
+        background: #f8f9fa;
+      }
+
+      body.light-theme .message.bot {
+        background: #e9ecef;
+        color: #2d3436;
+        border-color: #dee2e6;
+      }
+
+      body.light-theme .message.user {
+        background: var(--pink);
+        color: white;
+      }
+
+      body.light-theme .chat-input-area {
+        background: #f8f9fa;
+        border-top-color: #e2e8f0;
+      }
+
+      body.light-theme .chat-input-area input {
+        background: #ffffff;
+        border-color: #e2e8f0;
+        color: #2d3436;
+      }
+
+      /* Typing indicator */
+      .typing-indicator {
+        background: #2a2a2a;
+        padding: 0.8rem 1.5rem;
+        min-width: 70px;
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .typing-indicator span {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--pink);
+        animation: typing 1.4s infinite;
+      }
+
+      .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes typing {
+        0%,
+        60%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.6;
+        }
+        30% {
+          transform: translateY(-10px);
+          opacity: 1;
+        }
+      }
+
+      body.light-theme .typing-indicator {
+        background: #e9ecef;
+      }
+
+      body.light-theme .typing-indicator span {
+        background: var(--pink);
+      }
+
+      /* Buttons in light mode */
+      body.light-theme .btn-outline {
+        color: #2d3436;
+        border-color: var(--pink);
+      }
+
+      body.light-theme .btn-outline:hover {
+        background: rgba(255, 77, 141, 0.1);
+        color: var(--pink);
+      }
+
+      body.light-theme .btn-primary,
+      body.light-theme .btn-download {
+        color: white;
+      }
+
+      /* Profile image in light mode */
+      body.light-theme .profile-image {
+        background: #ffffff;
+        border-color: var(--pink);
+      }
+
+      body.light-theme .profile-image i {
+        color: var(--pink-soft);
+      }
+
+      /* Logo in light mode */
+      body.light-theme .logo {
+        background: linear-gradient(135deg, #2d3436, var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Contact info text */
+      body.light-theme .contact-info p {
+        color: #4a5568;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 640px) {
+        .theme-toggle {
+          margin-right: 0.5rem;
+        }
+      }
+      /* ===== END OF LIGHT THEME STYLES ===== */
+
+      /* smooth container */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.8rem;
+      }
+
+      section {
+        padding: 5.5rem 0;
+      }
+
+      /* section headers with pink underline */
+      .section-title {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 3rem;
+        letter-spacing: -0.02em;
+        position: relative;
+        display: inline-block;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 70px;
+        height: 4px;
+        background: var(--pink);
+        border-radius: 4px;
+        box-shadow: 0 0 12px var(--pink-glow);
+      }
+
+      /* buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        padding: 0.9rem 2rem;
+        border-radius: var(--radius-btn);
+        font-weight: 600;
+        font-size: 1rem;
+        transition: var(--transition);
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      }
+
+      .btn-primary {
+        background: linear-gradient(145deg, var(--pink), #ff6fa5);
+        color: white;
+      }
+      .btn-primary:hover {
+        box-shadow: 0 8px 25px var(--pink-glow);
+        transform: translateY(-4px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 1.5px solid var(--pink);
+        color: white;
+      }
+      .btn-outline:hover {
+        background: rgba(255, 77, 141, 0.15);
+        box-shadow: 0 0 20px var(--pink-glow);
+        transform: translateY(-3px);
+      }
+
+      /* navbar fixed + glass */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        z-index: 1000;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.9rem 2rem;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.7rem;
+        color: white;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, white, var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        font-weight: 500;
+        color: #e0e0e0;
+        padding: 0.3rem 0;
+        border-bottom: 2px solid transparent;
+        transition: var(--transition);
+      }
+
+      .nav-menu a:hover,
+      .nav-menu a.active {
+        color: var(--pink);
+        border-bottom-color: var(--pink);
+        text-shadow: 0 0 6px var(--pink-glow);
+      }
+
+      .mobile-toggle {
+        display: none;
+        font-size: 2rem;
+        color: var(--pink);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* HERO SECTION full height black to pink gradient */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: radial-gradient(circle at 30% 30%, #1f0f17, #0a0a0a 70%);
+        padding-top: 5rem;
+      }
+
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 850px;
+        margin: 0 auto;
+        animation: fadeUp 1.2s ease forwards;
+      }
+
+      @keyframes fadeUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .profile-image {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: #2a2a2a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        border: 4px solid var(--pink);
+        box-shadow: 0 0 30px var(--pink-glow);
+        overflow: hidden;
+      }
+
+      .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: linear-gradient(to right, white, #ffb6c1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero .title {
+        font-size: 1.6rem;
+        color: var(--pink);
+        font-weight: 500;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 8px var(--pink-glow);
+      }
+
+      .hero .tagline {
+        font-size: 1.2rem;
+        color: #ccc;
+        max-width: 600px;
+        margin-bottom: 2.2rem;
+      }
+
+      .cta-group {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      /* download resume special button */
+      .btn-download {
+        background: linear-gradient(145deg, #ff4d8d, #ff80b0);
+        color: white;
+        box-shadow: 0 6px 18px rgba(255, 77, 141, 0.5);
+      }
+      .btn-download:hover {
+        box-shadow: 0 10px 28px #ff4d8d;
+        transform: scale(1.05);
+      }
+
+      /* about card */
+      .about {
+        background-color: var(--black);
+      }
+      .about-card {
+        max-width: 850px;
+        margin: 0 auto;
+        background: var(--black-card);
+        padding: 2.8rem;
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-black), 0 0 0 1px rgba(255, 77, 141, 0.2);
+        transition: var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      .about-card:hover {
+        box-shadow: 0 30px 40px -15px black, 0 0 28px var(--pink-glow);
+        transform: translateY(-5px);
+      }
+      .about-card p {
+        font-size: 1.2rem;
+        color: #ddd;
+        line-height: 1.7;
+      }
+
+      /* skills grid */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+      .skill-card {
+        background: var(--black-card);
+        border-radius: var(--radius-card);
+        padding: 2rem 1.8rem;
+        box-shadow: var(--shadow-black);
+        border: 1px solid #2a2a2a;
+        transition: var(--transition);
+        height: 100%;
+      }
+      .skill-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 35px -12px black, 0 0 26px var(--pink-glow);
+        border-color: var(--pink);
+      }
+      .skill-card h3 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 1.8rem;
+        color: var(--pink);
+        border-left: 6px solid var(--pink);
+        padding-left: 1rem;
+      }
+      .skill-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem 1rem;
+      }
+      .skill-items span {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 0.5rem 1.3rem;
+        border-radius: 40px;
+        font-size: 0.98rem;
+        font-weight: 500;
+        color: #e2e2e2;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        border: 1px solid #333;
+        transition: 0.2s;
+      }
+      .skill-items i {
+        color: var(--pink);
+        font-size: 1.1rem;
+      }
+
+      /* projects */
+      .projects {
+        background: #0c0c0c;
+      }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.2rem;
+      }
+      .project-card {
+        background: var(--black-card);
+        border-radius: var(--radius-card);
+        padding: 2rem 1.8rem;
+        box-shadow: var(--shadow-black);
+        border: 1px solid #2c2c2c;
+        transition: var(--transition);
+        border-top: 3px solid transparent;
+      }
+      .project-card:hover {
+        transform: scale(1.02);
+        border-top-color: var(--pink);
+        box-shadow: 0 25px 35px -10px black, 0 0 30px var(--pink-glow);
+      }
+      .project-card h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--pink);
+        margin-bottom: 1rem;
+      }
+      .project-desc {
+        color: #bebebe;
+        margin: 1.2rem 0 1.8rem;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .project-desc strong {
+        color: white;
+      }
+
+      /* contact section */
+      .contact {
+        background: var(--black);
+      }
+      .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 2.5rem;
+      }
+      .contact-info {
+        background: var(--black-card);
+        border-radius: var(--radius-card);
+        padding: 2.2rem;
+        box-shadow: var(--shadow-black);
+        border: 1px solid #2a2a2a;
+      }
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin: 1.8rem 0;
+        font-size: 1.15rem;
+        color: #ddd;
+      }
+      .info-item i {
+        width: 2.8rem;
+        height: 2.8rem;
+        background: rgba(255, 77, 141, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--pink);
+        font-size: 1.4rem;
+        border: 1px solid var(--pink);
+        box-shadow: 0 0 14px var(--pink-glow);
+      }
+
+      .contact-form {
+        background: var(--black-card);
+        border-radius: var(--radius-card);
+        padding: 2.2rem;
+        box-shadow: var(--shadow-black);
+        border: 1px solid #2a2a2a;
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 1rem 1.3rem;
+        background: #151515;
+        border: 1.5px solid #2d2d2d;
+        border-radius: 2rem;
+        font-family: inherit;
+        font-size: 1rem;
+        color: white;
+        transition: var(--transition);
+      }
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--pink);
+        box-shadow: 0 0 18px var(--pink-glow);
+        background: #1a1a1a;
+      }
+      .error-msg {
+        color: #ff8a8a;
+        font-size: 0.85rem;
+        margin-top: 0.3rem;
+        padding-left: 1rem;
+      }
+      .submit-btn {
+        background: linear-gradient(145deg, var(--pink), #ff73a5);
+        color: white;
+        width: 100%;
+        padding: 1rem;
+        font-weight: 600;
+        border-radius: 3rem;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 8px 18px rgba(255, 77, 141, 0.3);
+      }
+      .submit-btn:hover {
+        transform: scale(1.02);
+        box-shadow: 0 14px 28px var(--pink-glow);
+      }
+
+      /* footer */
+      .footer {
+        background: #0a0a0a;
+        border-top: 2px solid var(--pink);
+        padding: 2.5rem 0;
+        text-align: center;
+        color: #aaa;
+        box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.7);
+      }
+      .footer p {
+        font-size: 1.1rem;
+      }
+      .footer a {
+        color: var(--pink);
+        text-decoration: none;
+        transition: 0.2s;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+        text-shadow: 0 0 8px pink;
+      }
+
+      /* responsive */
+      @media (max-width: 800px) {
+        .contact-container {
+          grid-template-columns: 1fr;
+        }
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav-menu {
+          position: fixed;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: var(--glass-bg);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          align-items: center;
+          padding: 2.5rem 0;
+          gap: 1.8rem;
+          border-bottom: 1px solid var(--pink);
+          box-shadow: 0 20px 30px black;
+          display: none;
+        }
+        .nav-menu.active {
+          display: flex;
+        }
+        .mobile-toggle {
+          display: block;
+        }
+        .cta-group {
+          flex-direction: column;
+          width: 100%;
+        }
+        .btn {
+          width: 100%;
+        }
+      }
+
+      /* ---------- SAVI CHATBOT STYLES ---------- */
+      .chatbot-toggle {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, var(--pink), #ff80b0);
+        border: none;
+        box-shadow: 0 6px 20px var(--pink-glow);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        transition: var(--transition);
+        animation: pulse 2s infinite;
+      }
+      .chatbot-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 25px var(--pink-glow);
+      }
+      .chatbot-toggle i {
+        font-size: 2.2rem;
+        color: white;
+      }
+
+      .chatbot-container {
+        position: fixed;
+        bottom: 6rem;
+        right: 2rem;
+        width: 350px;
+        max-width: calc(100vw - 4rem);
+        background: var(--black-card);
+        border-radius: 1.5rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8),
+          0 0 0 1px rgba(255, 77, 141, 0.3);
+        border: 1px solid #333;
+        z-index: 999;
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+      .chatbot-container.open {
+        display: flex;
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 var(--pink-glow);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(255, 77, 141, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 77, 141, 0);
+        }
+      }
+
+      .chat-header {
+        background: #1a1a1a;
+        padding: 1.2rem 1.5rem;
+        border-bottom: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .chat-header h3 {
+        color: white;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .chat-header h3 i {
+        color: var(--pink);
+      }
+      .close-chat {
+        background: transparent;
+        border: none;
+        color: #aaa;
+        font-size: 1.4rem;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .close-chat:hover {
+        color: var(--pink);
+      }
+
+      .chat-messages {
+        height: 300px;
+        overflow-y: auto;
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        background: #151515;
+      }
+
+      .message {
+        max-width: 80%;
+        padding: 0.8rem 1.2rem;
+        border-radius: 1.5rem;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        word-wrap: break-word;
+      }
+
+      .message.bot {
+        background: #2a2a2a;
+        color: #f0f0f0;
+        align-self: flex-start;
+        border-bottom-left-radius: 0.3rem;
+        border: 1px solid #3d3d3d;
+      }
+
+      .message.user {
+        background: var(--pink);
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 0.3rem;
+      }
+
+      .chat-input-area {
+        display: flex;
+        padding: 1rem;
+        background: #1a1a1a;
+        border-top: 1px solid #333;
+        gap: 0.5rem;
+      }
+
+      .chat-input-area input {
+        flex: 1;
+        padding: 0.8rem 1.2rem;
+        background: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 2rem;
+        color: white;
+        font-size: 0.95rem;
+      }
+      .chat-input-area input:focus {
+        outline: none;
+        border-color: var(--pink);
+        box-shadow: 0 0 10px var(--pink-glow);
+      }
+
+      .chat-input-area button {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, var(--pink), #ff80b0);
+        border: none;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chat-input-area button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px var(--pink-glow);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Fixed navbar with blur & pink accent -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">Savitha.</div>
+
+        <!-- DARK/LIGHT TOGGLE BUTTON -->
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+        </button>
+
+        <button class="mobile-toggle" id="mobileToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HOME / HERO with download resume -->
+    <section id="home" class="hero">
+      <div class="container hero-content">
+        <div class="profile-image">
+          <img src="images/picture.jpeg" alt="Savitha" />
+        </div>
+        <h1>Savitha</h1>
+        <div class="title">Frontend Developer</div>
+        <p class="tagline">
+          crafting pixel-perfect, responsive & premium web experiences
+        </p>
+        <div class="cta-group">
+          <a href="#projects" class="btn btn-primary"
+            ><i class="fas fa-arrow-down"></i> View Projects</a
+          >
+          <a href="#contact" class="btn btn-outline"
+            ><i class="fas fa-comment"></i> Contact Me</a
+          >
+          <!-- Download resume with icon and proper download attribute (resume.pdf) -->
+          <a href="#" onclick="return fakeDownload()" class="btn btn-download"
+            ><i class="fas fa-download"></i> Download Resume</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION (dark card with pink glow) -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">About me</h2>
+        <div class="about-card">
+          <p>
+            I have a solid understanding of HTML, CSS, and JavaScript, along
+            with basic knowledge of React. I aim to apply my skills in
+            real-world MERN stack projects and continuously grow as a developer.
+            My focus is on building responsive, user-friendly, and efficient web
+            applications that provide a smooth user experience.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills & expertise</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3><i class="fas fa-code"></i> Languages</h3>
+            <div class="skill-items">
+              <span><i class="fab fa-java"></i> Java</span
+              ><span><i class="fas fa-code"></i> C</span
+              ><span><i class="fab fa-python"></i> Python</span
+              ><span><i class="fab fa-html5"></i> HTML</span
+              ><span><i class="fab fa-css3-alt"></i> CSS</span
+              ><span><i class="fab fa-js"></i> JavaScript</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3><i class="fas fa-book"></i> Library</h3>
+            <div class="skill-items">
+              <span><i class="fab fa-react"></i> React JS</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+            <div class="skill-items">
+              <span><i class="fab fa-github"></i> GitHub</span
+              ><span><i class="fas fa-code"></i> VS Code</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3><i class="fas fa-lightbulb"></i> Other Skills</h3>
+            <div class="skill-items">
+              <span><i class="fas fa-puzzle-piece"></i> Problem Solving</span
+              ><span><i class="fas fa-paint-brush"></i> UI/UX basics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section-title">Featured projects</h2>
+        <div class="projects-grid">
+          <!-- MOVIE APP -->
+          <div class="project-card">
+            <h3>MOVIE APP</h3>
+            <div class="project-desc">
+              <strong>Full detailed description:</strong> A responsive movie
+              discovery app with search, filters, and movie details. Uses OMDB
+              API, displays ratings, posters, and summaries. Implemented with
+              vanilla JavaScript and modern CSS grid. Users can add movies to a
+              "watchlist" stored locally. Smooth UI with skeleton loaders.
+            </div>
+            <a href="#" class="btn btn-outline"
+              ><i class="fas fa-external-link-alt"></i> Live Demo</a
+            >
+          </div>
+          <!-- QUIZ WEB APP -->
+          <div class="project-card">
+            <h3>QUIZ WEB APPLICATION</h3>
+            <div class="project-desc">
+              <strong>Full detailed description:</strong> Interactive quiz app
+              with timed questions, instant feedback, and score tracking.
+              Fetches questions from OpenTrivia DB. Clean card design, progress
+              bar, and result analysis. Built with JavaScript, fully responsive.
+              Includes restart option and category selection.
+            </div>
+            <a href="#" class="btn btn-outline"
+              ><i class="fas fa-external-link-alt"></i> Live Demo</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION with form validation and social links -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Let's connect</h2>
+        <div class="contact-container">
+          <!-- left side contact info now shows GitHub and LinkedIn instead of phone number -->
+          <div class="contact-info">
+            <!-- GitHub link -->
+            <div class="info-item">
+              <i class="fab fa-github"></i>
+              <a
+                href="https://github.com/MUTHU-SAVITHA-R"
+                target="_blank"
+                style="color: #ddd; text-decoration: none"
+                >github.com/MUTHU-SAVITHA-R</a
+              >
+            </div>
+            <!-- LinkedIn link -->
+            <div class="info-item">
+              <i class="fab fa-linkedin"></i>
+              <a
+                href="https://www.linkedin.com/in/muthu-savitha-r-4a385a326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                style="color: #ddd; text-decoration: none"
+                >linkedin.com/in/muthu-savitha-r</a
+              >
+            </div>
+            <!-- Email remains same (as per requirement) -->
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <span>muthusavithar@gmail.com</span>
+            </div>
+            <div style="margin-top: 2rem">
+              <p style="color: #aaa">or use the form →</p>
+            </div>
+          </div>
+          <!-- contact form -->
+          <div class="contact-form">
+            <form id="contactForm">
+              <div class="form-group">
+                <input type="text" id="name" placeholder="Your name" required />
+                <div class="error-msg" id="nameError"></div>
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Email address"
+                  required
+                />
+                <div class="error-msg" id="emailError"></div>
+              </div>
+              <div class="form-group">
+                <textarea
+                  id="message"
+                  rows="4"
+                  placeholder="Your message"
+                  required
+                ></textarea>
+                <div class="error-msg" id="msgError"></div>
+              </div>
+              <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Send message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© 2026 Savitha | Frontend Developer | All Rights Reserved</p>
+      <p style="margin-top: 0.7rem">
+        <a href="#home">Home</a> · <a href="#about">About</a> ·
+        <a href="#skills">Skills</a>
+      </p>
+    </footer>
+
+    <!-- SAVI CHATBOT -->
+    <button class="chatbot-toggle" id="chatbotToggle">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <div class="chatbot-container" id="chatbotContainer">
+      <div class="chat-header">
+        <h3><i class="fas fa-robot"></i> Savi · assistant</h3>
+        <button class="close-chat" id="closeChat">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+          Hi! I'm Savi 👋, your AI assistant. Ask me anything about Savitha,
+          coding, technology, or general questions!
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type your message..." />
+        <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // ---------- MOBILE TOGGLE & SMOOTH SCROLL ----------
+        const toggleBtn = document.getElementById("mobileToggle");
+        const navMenu = document.getElementById("navMenu");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const sections = document.querySelectorAll("section[id]");
+
+        if (toggleBtn) {
+          toggleBtn.addEventListener("click", function () {
+            navMenu.classList.toggle("active");
+          });
+        }
+
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId && targetId !== "#") {
+              const targetEl = document.querySelector(targetId);
+              if (targetEl) targetEl.scrollIntoView({ behavior: "smooth" });
+            }
+            navLinks.forEach(function (l) {
+              l.classList.remove("active");
+            });
+            this.classList.add("active");
+            if (navMenu.classList.contains("active"))
+              navMenu.classList.remove("active");
+          });
+        });
+
+        window.addEventListener("scroll", function () {
+          let current = "";
+          sections.forEach(function (section) {
+            const sectionTop = section.offsetTop - 120;
+            if (window.scrollY >= sectionTop)
+              current = section.getAttribute("id");
+          });
+          navLinks.forEach(function (link) {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + current)
+              link.classList.add("active");
+          });
+        });
+
+        // ---------- DOWNLOAD RESUME ----------
+        window.fakeDownload = function () {
+          const anchor = document.createElement("a");
+          anchor.href =
+            "data:application/octet-stream," +
+            encodeURIComponent(
+              "Savitha - Frontend Developer Resume\nSkills: HTML, CSS, JavaScript, React, Java, Python\nProjects: Movie App, Quiz App\nExperience: building responsive web apps."
+            );
+          anchor.download = "Savitha_Resume.pdf";
+          anchor.click();
+          return false;
+        };
+
+        // ---------- CONTACT FORM VALIDATION ----------
+        const contactForm = document.getElementById("contactForm");
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const messageInput = document.getElementById("message");
+        const nameError = document.getElementById("nameError");
+        const emailError = document.getElementById("emailError");
+        const msgError = document.getElementById("msgError");
+
+        function validateEmail(email) {
+          const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return re.test(String(email).toLowerCase());
+        }
+
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            let isValid = true;
+
+            if (!nameInput.value.trim()) {
+              nameError.textContent = "Name is required.";
+              isValid = false;
+            } else {
+              nameError.textContent = "";
+            }
+
+            if (!emailInput.value.trim()) {
+              emailError.textContent = "Email is required.";
+              isValid = false;
+            } else if (!validateEmail(emailInput.value.trim())) {
+              emailError.textContent = "Please enter a valid email address.";
+              isValid = false;
+            } else {
+              emailError.textContent = "";
+            }
+
+            if (!messageInput.value.trim()) {
+              msgError.textContent = "Message cannot be empty.";
+              isValid = false;
+            } else {
+              msgError.textContent = "";
+            }
+
+            if (isValid) {
+              alert(
+                `Thanks for reaching out, ${nameInput.value}! I'll get back to you soon.`
+              );
+              contactForm.reset();
+            }
+          });
+        }
+
+        // ---------- UNIVERSAL CHATBOT - ANSWERS ANY QUESTION! ----------
+        const chatbotToggle = document.getElementById("chatbotToggle");
+        const chatbotContainer = document.getElementById("chatbotContainer");
+        const closeChat = document.getElementById("closeChat");
+        const sendChat = document.getElementById("sendChat");
+        const chatInput = document.getElementById("chatInput");
+        const chatMessages = document.getElementById("chatMessages");
+
+        // YOUR GROQ API KEY
+        const GROQ_API_KEY =
+          "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";
+
+        // System Prompt with YOUR profile - but allows ANY question!
+        const systemPrompt = `You are Savi, an AI assistant for Savitha's portfolio website.
+
+ABOUT SAVITHA (use this info when asked about her):
+- Name: Savitha
+- Role: Frontend Developer
+- Skills: HTML, CSS, JavaScript, React, Java, Python, GitHub, VS Code
+- Projects: Movie App (OMDB API), Quiz App (OpenTrivia DB)
+- Email: muthusavithar@gmail.com
+- GitHub: MUTHU-SAVITHA-R
+- LinkedIn: muthu-savitha-r
+
+IMPORTANT INSTRUCTIONS:
+1. When someone asks about Savitha, use the information above
+2. When someone asks general questions (like "what is machine learning", "how to code", etc.), answer them helpfully
+3. Be friendly, conversational, and use emojis 😊
+4. Keep responses clear and informative
+5. You can answer ANY question - about technology, programming, general knowledge, etc.
+6. If you don't know something, just say so politely
+
+Remember: You're a helpful AI assistant first, and Savitha's portfolio assistant second!`;
+
+        // Toggle chatbot
+        if (chatbotToggle) {
+          chatbotToggle.addEventListener("click", function () {
+            chatbotContainer.classList.add("open");
+          });
+        }
+
+        if (closeChat) {
+          closeChat.addEventListener("click", function () {
+            chatbotContainer.classList.remove("open");
+          });
+        }
+
+        // Add message to chat
+        function addMessage(text, sender) {
+          const msgDiv = document.createElement("div");
+          msgDiv.classList.add("message", sender);
+          msgDiv.textContent = text;
+          chatMessages.appendChild(msgDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Typing indicator
+        function showTypingIndicator() {
+          const indicator = document.createElement("div");
+          indicator.classList.add("message", "bot", "typing-indicator");
+          indicator.id = "typingIndicator";
+          indicator.innerHTML = "<span>.</span><span>.</span><span>.</span>";
+          chatMessages.appendChild(indicator);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+          const indicator = document.getElementById("typingIndicator");
+          if (indicator) indicator.remove();
+        }
+
+        // Call Groq API - Answers ANY question!
+        async function fetchGroqResponse(userMessage) {
+          try {
+            const response = await fetch(
+              "https://api.groq.com/openai/v1/chat/completions",
+              {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${GROQ_API_KEY}`,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  model: "llama-3.1-8b-instant",
+                  messages: [
+                    { role: "system", content: systemPrompt },
+                    { role: "user", content: userMessage },
+                  ],
+                  temperature: 0.7,
+                  max_tokens: 500,
+                }),
+              }
+            );
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(errorData.error?.message || "API request failed");
+            }
+
+            const data = await response.json();
+            return data.choices[0].message.content.trim();
+          } catch (error) {
+            console.error("Groq API error:", error);
+            return `I encountered an error: ${error.message}. Please try again later. 😅`;
+          }
+        }
+
+        // Handle user message
+        async function handleUserMessage() {
+          const userText = chatInput.value.trim();
+          if (userText === "") return;
+
+          addMessage(userText, "user");
+          chatInput.value = "";
+          showTypingIndicator();
+
+          const botReply = await fetchGroqResponse(userText);
+          removeTypingIndicator();
+          addMessage(botReply, "bot");
+        }
+
+        // Event listeners
+        if (sendChat) {
+          sendChat.addEventListener("click", handleUserMessage);
+        }
+
+        if (chatInput) {
+          chatInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleUserMessage();
+            }
+          });
+        }
+
+        // Test API key
+        (async function testGroqKey() {
+          try {
+            const testResponse = await fetch(
+              "https://api.groq.com/openai/v1/models",
+              {
+                headers: { Authorization: `Bearer ${GROQ_API_KEY}` },
+              }
+            );
+            if (testResponse.ok) {
+              console.log("✅ Groq API key is valid! Chatbot is ready.");
+              addMessage(
+                "✅ Connected! Ask me anything about Savitha, coding, technology, or general questions!",
+                "bot"
+              );
+            } else {
+              console.error("❌ Groq API key is invalid!");
+            }
+          } catch (e) {
+            console.error("❌ Network error:", e);
+          }
+        })();
+
+        // ---------- DARK/LIGHT MODE TOGGLE ----------
+        const themeToggle = document.getElementById("themeToggle");
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light") {
+          body.classList.add("light-theme");
+        }
+
+        function toggleTheme() {
+          body.classList.toggle("light-theme");
+          const isLight = body.classList.contains("light-theme");
+          localStorage.setItem("theme", isLight ? "light" : "dark");
+        }
+
+        if (themeToggle) {
+          themeToggle.addEventListener("click", toggleTheme);
+        }
+      })();
+    </script>
+  </body>
+</html>
